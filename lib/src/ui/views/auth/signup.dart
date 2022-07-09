@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktokclone/src/res/colors.dart';
 import 'package:tiktokclone/src/res/styles.dart';
-import 'package:tiktokclone/src/ui/views/auth/signup.dart';
 import 'package:tiktokclone/src/ui/views/components/button.dart';
 import 'package:tiktokclone/src/ui/views/components/text_input.dart';
+import 'package:tiktokclone/src/utils/constants.dart';
 import 'package:tiktokclone/src/utils/navigations.dart';
 
-class Login extends StatelessWidget {
-  Login({Key? key}) : super(key: key);
+class SignUP extends StatelessWidget {
+  SignUP({Key? key}) : super(key: key);
 
+  final TextEditingController _usernameConttroller = TextEditingController();
   final TextEditingController _emailConttroller = TextEditingController();
   final TextEditingController _passConttroller = TextEditingController();
 
@@ -20,6 +21,17 @@ class Login extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            InkWell(
+              onTap: () => AppRoute.pop(context),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
@@ -31,14 +43,43 @@ class Login extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                'Login',
+                'Register',
                 style: GoogleFonts.nunito(
                   fontSize: 25,
                   fontWeight: FontWeight.w700,
                 ),
               ),
             ),
-            const SizedBox(height: 25),
+            Center(
+              child: Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 64,
+                    backgroundImage: NetworkImage(Constants.proImg),
+                    backgroundColor: Colors.black,
+                  ),
+                  Positioned(
+                    bottom: -10,
+                    left: 80,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.add_a_photo),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(height: 15),
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextInputField(
+                controller: _usernameConttroller,
+                labelText: 'Username',
+                icon: Icons.person,
+              ),
+            ),
+            const SizedBox(height: 15),
             Container(
               width: double.infinity,
               margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -48,7 +89,7 @@ class Login extends StatelessWidget {
                 icon: Icons.email,
               ),
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 15),
             Container(
               width: double.infinity,
               margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -61,7 +102,7 @@ class Login extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             AppButton(
-              label: 'Login',
+              label: 'Sign Up',
               press: () {},
             ),
             const SizedBox(height: 15),
@@ -69,19 +110,16 @@ class Login extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Don\'t have an account?',
+                  'already have an account?',
                   style: GoogleFonts.nunito(
                     fontSize: 20,
                   ),
                 ),
                 const SizedBox(width: 10),
                 InkWell(
-                  onTap: () => AppRoute.navigatePush(
-                    context: context,
-                    page: SignUP(),
-                  ),
+                  onTap: () => AppRoute.pop(context),
                   child: Text(
-                    'Register',
+                    'Login',
                     style: GoogleFonts.nunito(
                       fontSize: 20,
                       color: AppColors.buttonColor,

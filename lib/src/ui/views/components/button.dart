@@ -24,10 +24,10 @@ class AppButton extends StatelessWidget {
         ),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: press,
         child: Center(
           child: Text(
-            'Login',
+            label,
             style: GoogleFonts.nunito(
               fontSize: 20,
               fontWeight: FontWeight.w700,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktokclone/src/res/colors.dart';
 import 'package:tiktokclone/src/res/styles.dart';
+import 'package:tiktokclone/src/ui/controllers/auth/auth_controller.dart';
 import 'package:tiktokclone/src/ui/views/auth/signup.dart';
 import 'package:tiktokclone/src/ui/views/components/button.dart';
 import 'package:tiktokclone/src/ui/views/components/text_input.dart';
@@ -62,7 +63,10 @@ class Login extends StatelessWidget {
             const SizedBox(height: 30),
             AppButton(
               label: 'Login',
-              press: () {},
+              press: () => AuthController.instance.loginUser(
+                _emailConttroller.text,
+                _passConttroller.text,
+              ),
             ),
             const SizedBox(height: 15),
             Row(

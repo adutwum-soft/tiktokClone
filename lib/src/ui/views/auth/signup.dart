@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktokclone/src/res/colors.dart';
 import 'package:tiktokclone/src/res/styles.dart';
+import 'package:tiktokclone/src/ui/controllers/auth/auth_controller.dart';
 import 'package:tiktokclone/src/ui/views/components/button.dart';
 import 'package:tiktokclone/src/ui/views/components/text_input.dart';
 import 'package:tiktokclone/src/utils/constants.dart';
@@ -62,7 +63,7 @@ class SignUP extends StatelessWidget {
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () => AuthController.instance.pickImage(),
                       icon: const Icon(Icons.add_a_photo),
                     ),
                   )
@@ -103,7 +104,12 @@ class SignUP extends StatelessWidget {
             const SizedBox(height: 30),
             AppButton(
               label: 'Sign Up',
-              press: () {},
+              press: () => AuthController.instance.registerUser(
+                _usernameConttroller.text,
+                _emailConttroller.text,
+                _passConttroller.text,
+                AuthController.instance.profilePhoto,
+              ),
             ),
             const SizedBox(height: 15),
             Row(

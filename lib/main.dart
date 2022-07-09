@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tiktokclone/src/res/colors.dart';
+import 'package:tiktokclone/src/ui/views/auth/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.backgroundColor,
       ),
       debugShowCheckedModeBanner: false,
-      home: const Text('Hello world'),
+      home: Login(),
     );
   }
 }

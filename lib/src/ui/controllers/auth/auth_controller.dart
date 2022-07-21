@@ -6,6 +6,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tiktokclone/src/models/user.dart' as userModel;
+import 'package:tiktokclone/src/ui/views/auth/login.dart';
+import 'package:tiktokclone/src/ui/views/home.dart';
 
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
@@ -14,7 +16,26 @@ class AuthController extends GetxController {
   var firestore = FirebaseFirestore.instance;
 
   late Rx<File?> _pickedImage;
+  late Rx<User?> _user;
+
   File? get profilePhoto => _pickedImage.value;
+  User? get getUser => _user.value;
+
+  @override
+  void onReady() {
+    super.onReady();
+    _user = Rx<User?>(firebaseAuth.currentUser);
+    _user.bindStream(firebaseAuth.authStateChanges());
+    ever(_user, _setInitialScreen);
+  }
+
+  _setInitialScreen(User? user) {
+    if (user == null) {
+      Get.offAll(() => Login());
+    } else {
+      Get.offAll(() => const Home());
+    }
+  }
 
   pickImage() async {
     final pickedImage =
